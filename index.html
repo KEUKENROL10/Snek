@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>SNEK — Sophisticated Snake</title>
+  <meta name="description" content="A sophisticated Snake game with power-ups, combos and juice." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🐍</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="hud">
+      <div class="hud-left">
+        <div class="stat">
+          <span class="stat-label">Score</span>
+          <span class="stat-value" id="score">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Best</span>
+          <span class="stat-value" id="best">0</span>
+        </div>
+        <div class="stat combo" id="combo-stat" hidden>
+          <span class="stat-label">Combo</span>
+          <span class="stat-value" id="combo">×1</span>
+        </div>
+      </div>
+      <div class="hud-right">
+        <div class="stat">
+          <span class="stat-label">Length</span>
+          <span class="stat-value" id="length">3</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Level</span>
+          <span class="stat-value" id="level">1</span>
+        </div>
+        <button class="icon-btn" id="btn-pause" title="Pause (P)" aria-label="Pause">⏸</button>
+        <button class="icon-btn" id="btn-mute" title="Mute (M)" aria-label="Mute">🔊</button>
+      </div>
+    </header>
+
+    <div class="effects-bar" id="effects-bar"></div>
+
+    <div class="stage">
+      <canvas id="game" width="672" height="528"></canvas>
+
+      <div class="overlay" id="overlay-menu">
+        <h1 class="title">SNEK</h1>
+        <p class="subtitle">a sophisticated snake</p>
+        <button class="big-btn" id="btn-play">▶ Play</button>
+        <div class="legend">
+          <div class="legend-row"><span class="pill" style="--c:#ffd23f">⚡ Turbo</span><span class="pill" style="--c:#4ecdc4">🐌 Slow-Mo</span><span class="pill" style="--c:#b39ddb">👻 Ghost</span><span class="pill" style="--c:#ff6b9d">🧲 Magnet</span></div>
+          <div class="legend-row"><span class="pill" style="--c:#ffa726">✨ 2× Score</span><span class="pill" style="--c:#42a5f5">🛡 Shield</span><span class="pill" style="--c:#66bb6a">✂ Shrink</span><span class="pill" style="--c:#ef5350">🍒 Frenzy</span></div>
+        </div>
+        <p class="hint">Arrows / WASD to steer · P pause · Swipe on mobile<br/>Chain food quickly for combo multipliers</p>
+      </div>
+
+      <div class="overlay hidden" id="overlay-pause">
+        <h2 class="title small">Paused</h2>
+        <button class="big-btn" id="btn-resume">▶ Resume</button>
+        <p class="hint">Press P or Space to resume</p>
+      </div>
+
+      <div class="overlay hidden" id="overlay-gameover">
+        <h2 class="title small">Game Over</h2>
+        <p class="final-score">Score <strong id="final-score">0</strong></p>
+        <p class="final-best" id="new-best" hidden>🏆 New best!</p>
+        <button class="big-btn" id="btn-restart">↻ Play Again</button>
+        <p class="hint">Press Enter or R to restart</p>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span>⚡ turbo pays +50% points while active</span>
+      <span>🛡 shield saves you once</span>
+    </footer>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
