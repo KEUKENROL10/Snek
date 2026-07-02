@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>SNEK — Sophisticated Snake</title>
-  <meta name="description" content="A sophisticated Snake game with power-ups, combos and juice." />
+  <meta name="description" content="A sophisticated Snake game with power-ups, skins, game modes, combos and juice." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🐍</text></svg>" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -41,23 +41,33 @@
 
     <div class="effects-bar" id="effects-bar"></div>
 
-    <div class="stage">
+    <div class="stage" id="stage">
       <canvas id="game" width="672" height="528"></canvas>
 
       <div class="overlay" id="overlay-menu">
         <h1 class="title">SNEK</h1>
         <p class="subtitle">a sophisticated snake</p>
+
+        <div class="mode-row" id="mode-row"></div>
+        <p class="pick-hint" id="mode-hint"></p>
+
         <button class="big-btn" id="btn-play">▶ Play</button>
+
+        <div class="skin-row" id="skin-row"></div>
+        <p class="pick-hint" id="skin-hint"></p>
+
         <div class="legend">
-          <div class="legend-row"><span class="pill" style="--c:#ffd23f">⚡ Turbo</span><span class="pill" style="--c:#4ecdc4">🐌 Slow-Mo</span><span class="pill" style="--c:#b39ddb">👻 Ghost</span><span class="pill" style="--c:#ff6b9d">🧲 Magnet</span></div>
-          <div class="legend-row"><span class="pill" style="--c:#ffa726">✨ 2× Score</span><span class="pill" style="--c:#42a5f5">🛡 Shield</span><span class="pill" style="--c:#66bb6a">✂ Shrink</span><span class="pill" style="--c:#ef5350">🍒 Frenzy</span></div>
+          <div class="legend-row"><span class="pill" style="--c:#ffd23f">⚡ Turbo</span><span class="pill" style="--c:#4ecdc4">🐌 Slow-Mo</span><span class="pill" style="--c:#b39ddb">👻 Ghost</span><span class="pill" style="--c:#ff6b9d">🧲 Magnet</span><span class="pill" style="--c:#ffa726">✨ 2×</span></div>
+          <div class="legend-row"><span class="pill" style="--c:#42a5f5">🛡 Shield</span><span class="pill" style="--c:#66bb6a">✂ Shrink</span><span class="pill" style="--c:#ef5350">🍒 Frenzy</span><span class="pill" style="--c:#fff176">⭐ Star</span><span class="pill" style="--c:#ffd700">🪙 Gold Rush</span></div>
+          <div class="legend-row"><span class="pill" style="--c:#26c6da">🌀 Portals</span><span class="pill" style="--c:#ff8a65">💣 Bomb</span><span class="pill" style="--c:#ce93d8">🎁 Mystery</span></div>
         </div>
-        <p class="hint">Arrows / WASD to steer · P pause · Swipe on mobile<br/>Chain food quickly for combo multipliers</p>
+        <p class="hint">Arrows / WASD to steer · P pause · Swipe on mobile</p>
       </div>
 
       <div class="overlay hidden" id="overlay-pause">
         <h2 class="title small">Paused</h2>
         <button class="big-btn" id="btn-resume">▶ Resume</button>
+        <button class="ghost-btn" id="btn-quit">☰ Menu</button>
         <p class="hint">Press P or Space to resume</p>
       </div>
 
@@ -65,16 +75,24 @@
         <h2 class="title small">Game Over</h2>
         <p class="final-score">Score <strong id="final-score">0</strong></p>
         <p class="final-best" id="new-best" hidden>🏆 New best!</p>
+        <div class="go-stats">
+          <div><span id="go-length">0</span><label>Length</label></div>
+          <div><span id="go-level">0</span><label>Level</label></div>
+          <div><span id="go-powerups">0</span><label>Power-ups</label></div>
+        </div>
         <button class="big-btn" id="btn-restart">↻ Play Again</button>
+        <button class="ghost-btn" id="btn-menu">☰ Menu</button>
         <p class="hint">Press Enter or R to restart</p>
       </div>
     </div>
 
     <footer class="foot">
-      <span>⚡ turbo pays +50% points while active</span>
-      <span>🛡 shield saves you once</span>
+      <span>🎁 mystery boxes can bite back</span>
+      <span>⭐ star smashes rocks</span>
     </footer>
   </main>
+
+  <div class="toast" id="toast"></div>
 
   <script src="game.js"></script>
 </body>
